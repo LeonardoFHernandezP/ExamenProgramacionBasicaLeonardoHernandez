@@ -27,14 +27,47 @@ char codificacionDecodificacion[] = {
 };
 
 // Función para cifrar un mensaje utilizando el cifrado César
-void cifrarMensaje(char* m, int desplazamiento,char* code) {
-
+void cifrarMensaje(char* m, int desplazamiento, char* code){
+	char* ptr=m;
+	
+	while(*ptr){
+		char* p=code;
+		
+		while(p<code+53 && *p!=*ptr){
+			p++;
+		}
+		
+		if(p<code+53){
+			int indice=p-code;
+			
+			int nuevo_indice=(indice+(desplazamiento%53)+53)%53;
+			*ptr=*(code+nuevo_indice);
+		}
+		ptr++;
+	}
+	cout<<"Mensaje cifrado: "<<m<<"\n";
 }
 
 // Función para descifrar un mensaje utilizando el cifrado César
-void descifrarMensaje(char* m, int desplazamiento, char* code) {
-
-
+void descifrarMensaje(char* m, int desplazamiento, char* code){
+	char* ptr= m;
+	
+	while(*ptr){
+		char* p=code;
+		
+		while(p<code+53 && *p !=*ptr){
+			p++;
+		}
+	
+		if(p<code+53){
+			int indice=p-code;
+		
+			int newind=(indice-(desplazamiento%53)+53)%53;
+			*ptr=*(code+newind);
+		}
+		ptr++;
+	}
+	std::cout<<"Mensaje descifrado: "<<m<<"\n";
 }
 
 int main() {

@@ -1,4 +1,3 @@
-
 /*Encontrar el mensaje cifrado, se tiene 2 vectores:
 * vector char mensajeCifrado: contiene todas las letras del abecedario, minusculas como mayusculas
 * vector int decodifcador: en la cual contiene las posiciones claves de las letras del mensaje a 
@@ -13,6 +12,15 @@
 #include<conio.h>
 using namespace std;
 
+void desmensaje(char* Pmensaje, int* pcodificar, int tamano){
+    for (int i = 0; i < tamano; i++) {
+        Pmensaje+=*(pcodificar + i);
+
+        std::cout<<*Pmensaje;
+    }
+    std::cout<<endl;
+}
+
 int main() {
 
     char mensajeCifrado[] = {
@@ -22,5 +30,12 @@ int main() {
     };
     int decodificador[] = { 2,17,-19,2,48,-44,35,-34,35,-42,2,44,1,-41,-6,2,4,40,5};
     //Seguir desde aqui el codigo a implementar
+    
+	int tamanodelmensaje=sizeof(decodificador) / sizeof(decodificador[0]); 
+	
+	std::cout<<"Este fue el mensaje cifrado: ";
+    desmensaje(mensajeCifrado,decodificador,tamanodelmensaje);
+    
+    getch();
 	return 0;
 }
